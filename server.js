@@ -20,6 +20,8 @@ app.get("/launches", cors(), (req, res) => {
       },
     })
     .then((axres) => {
+      // const count = axres.headers["spacex-api-count"];
+      // console.log(count);
       const d = axres.data.map((item) => {
         return {
           name: item.mission_name,

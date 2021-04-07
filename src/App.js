@@ -52,7 +52,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(dataURL);
-      console.log(result.data);
+      // console.log(result.data);
       setData({ launches: result.data });
       setLoading(false);
     };
