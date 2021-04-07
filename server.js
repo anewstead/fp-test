@@ -3,6 +3,7 @@
 const express = require("express");
 const app = express();
 const port = 4000;
+const cors = require("cors");
 
 const axios = require("axios");
 const api = "https://api.spacexdata.com/v3";
@@ -11,11 +12,10 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.get("/launches", (req, res) => {
+app.get("/launches", cors(), (req, res) => {
   axios
     .get(`${api}/launches/past`, {
       params: {
-        limit: req.query.limit ? req.query.limit : 50,
         ...req.query,
       },
     })
@@ -33,7 +33,7 @@ app.get("/launches", (req, res) => {
     });
 });
 
-app.get("/rockets", (req, res) => {
+app.get("/rockets", cors(), (req, res) => {
   axios
     .get(`${api}/rockets`, {
       params: {
@@ -49,7 +49,7 @@ app.get("/rockets", (req, res) => {
             style: "currency",
             currency: "USD",
           }),
-          image: item.flickr_images[0],
+          picture: item.flickr_images[0],
         };
       });
 

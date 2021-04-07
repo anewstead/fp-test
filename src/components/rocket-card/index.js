@@ -5,9 +5,9 @@ import Image from "../image";
 import Lockup from "../lockup";
 import PropTypes from "prop-types";
 import { gridGutter } from "../../helpers";
-import Link, { LinkWrap } from "../link";
+import Cost from "../cost";
 
-const LaunchCardWrapper = styled.div`
+const RocketCardWrapper = styled.div`
   display: flex;
   margin-bottom: 30px;
   width: 100%;
@@ -18,21 +18,21 @@ const LaunchCardWrapper = styled.div`
   }
 `;
 
-const LaunchCardContainer = styled.div`
+const RocketCardContainer = styled.div`
   display: flex;
   flex-direction: column-reverse;
   flex-grow: 1;
 `;
 
 const ImagContainer = styled.div`
-  padding: 40px 20px;
   background-color: #b3c7cc;
   position: relative;
   margin-top: auto;
 
   img {
-    height: 100px;
+    height: 200px;
     width: auto;
+    min-width: 100%;
     display: block;
     margin: 0 auto;
   }
@@ -40,42 +40,35 @@ const ImagContainer = styled.div`
 
 const Content = styled.div`
   display: flex;
-  flex-direction: column;
-  flex-direction: column;
-  justify-content: space-between;
   padding: 20px;
   background-color: #f6f7f7;
   flex: 1;
-
-  ${LinkWrap} {
-    margin-top: 0.6em;
-  }
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
-function LaunchCard(props) {
-  let link = <></>;
-  if (props.link) {
-    link = <Link url={props.link} title={"View on youtube"} />;
-  }
+function RocketCard(props) {
   return (
-    <LaunchCardWrapper data-testid="launch-card">
-      <LaunchCardContainer>
+    <RocketCardWrapper>
+      <RocketCardContainer>
         <ImagContainer>
           <Image url={props.image} />
         </ImagContainer>
         <Content>
           <Lockup text={props.description} tag="h3" title={props.title} />
-          {link}
+          <Cost text={props.cost} />
         </Content>
-      </LaunchCardContainer>
-    </LaunchCardWrapper>
+        {/* Youtube Link ? */}
+      </RocketCardContainer>
+    </RocketCardWrapper>
   );
 }
 
-LaunchCard.propTypes = {
+RocketCard.propTypes = {
   image: PropTypes.string,
   description: PropTypes.string,
   title: PropTypes.string,
+  cost: PropTypes.string,
 };
 
-export default LaunchCard;
+export default RocketCard;
