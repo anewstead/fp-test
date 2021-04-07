@@ -3,15 +3,25 @@ import styled from "styled-components";
 import { device } from "../../helpers";
 import Image from "../image";
 import Lockup from "../lockup";
+import PropTypes from "prop-types";
+import { gridGutter } from "../../helpers";
 
 const LaunchCardWrapper = styled.div`
-  display: block;
+  display: flex;
   margin-bottom: 30px;
-  margin-left: 20px;
   width: 100%;
+  margin-left: ${gridGutter};
+
+  @media ${device.laptop} {
+    flex-basis: calc(33% - ${gridGutter});
+  }
 `;
 
-const LaunchCardContainer = styled.div``;
+const LaunchCardContainer = styled.div`
+  display: flex;
+  flex-direction: column-reverse;
+  flex-grow: 1;
+`;
 
 const ImagContainer = styled.div`
   padding: 40px 20px;
@@ -35,12 +45,11 @@ const Content = styled.div`
 
 function LaunchCard(props) {
   return (
-    <LaunchCardWrapper>
+    <LaunchCardWrapper data-testid="launch-card">
       <LaunchCardContainer>
         <ImagContainer>
           <Image url={props.image} />
         </ImagContainer>
-
         <Content>
           <Lockup text={props.description} tag="h3" title={props.title} />
         </Content>
@@ -49,5 +58,11 @@ function LaunchCard(props) {
     </LaunchCardWrapper>
   );
 }
+
+LaunchCard.propTypes = {
+  image: PropTypes.string,
+  description: PropTypes.string,
+  title: PropTypes.string,
+};
 
 export default LaunchCard;

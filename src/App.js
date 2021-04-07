@@ -7,16 +7,12 @@ import Hero from "./components/hero";
 import Section from "./layout/section";
 import Wrapper from "./layout/wrapper";
 import LaunchCard from "./components/lauch-card";
+import { Grid } from "./layout/grid";
 
 const MainWrapper = styled.main`
   display: block;
   position: relative;
   width: 100%;
-
-  .grid {
-    display: flex;
-    flex-wrap: wrap;
-  }
 `;
 
 const ContentSelector = styled.div`
@@ -40,10 +36,8 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
-        "https://api.spacexdata.com/v4/launches/past?limit=10"
+        "https://api.spacexdata.com/v3/launches/past?limit=10"
       );
-
-      console.log(result.data);
 
       setData({ launches: result.data });
       setLoading(false);
@@ -68,16 +62,16 @@ function App() {
 
         {!loading && (
           <Wrapper>
-            <div className="grid">
+            <Grid useNegativeGutter={true}>
               {data.launches.map((item, index) => (
                 <LaunchCard
                   key={index.toString()}
-                  image={item.links.patch.small}
-                  title={item.name}
+                  image={item.links.mission_patch_small}
+                  title={item.mission_name}
                   description={item.details}
                 />
               ))}
-            </div>
+            </Grid>
           </Wrapper>
         )}
       </Section>
