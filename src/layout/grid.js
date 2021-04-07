@@ -10,7 +10,6 @@ export const Grid = styled.div`
     useNegativeGutter &&
     `
     margin-left: -${gridGutter};
-    margin-right: -${gridGutter};
   `}
 `;
 

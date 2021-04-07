@@ -13,7 +13,7 @@ const LaunchCardWrapper = styled.div`
   margin-left: ${gridGutter};
 
   @media ${device.laptop} {
-    flex-basis: calc(33% - ${gridGutter});
+    flex-basis: calc(33.3% - ${gridGutter});
   }
 `;
 
